@@ -1,7 +1,9 @@
-function App() {
-  return (
-    <h1>Hello world</h1>
-  )
-}
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle, defaultTheme } from './styles'
 
-export default App
+export const App = () => (
+  <ThemeProvider theme={defaultTheme}>
+    <h1>Hello world</h1>
+    <GlobalStyle />
+  </ThemeProvider>
+)
