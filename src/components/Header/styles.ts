@@ -6,6 +6,10 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 33px 10rem 33px 10rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: ${(props) => props.theme.white};
 
     nav {
       display: flex;

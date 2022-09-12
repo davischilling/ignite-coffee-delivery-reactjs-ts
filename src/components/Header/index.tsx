@@ -16,11 +16,11 @@ export const HeaderComponent = () => (
         color="#EBE5F9"
         className={'coffee-market'}
       >
-        <MapPin size={24} color={'#8047F8'} fill={'#8047F8'} />
+        <MapPin size={24} color={'#8047F8'} weight="fill" />
         <p>Porto Alegre, RS</p>
       </NavLink>
       <NavLink to="/cart" title="Cart" color="#F1E9C9" className={'cart'}>
-        <ShoppingCart size={24} color={'#C47F17'} fill={'#C47F17'} />
+        <ShoppingCart size={24} color={'#C47F17'} weight="fill" />
       </NavLink>
     </nav>
   </Header>

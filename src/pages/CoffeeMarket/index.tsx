@@ -1,8 +1,18 @@
+import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
+
 import styles from './styles'
 import CoffeeHeader from '../../assets/coffee-header.svg'
+import { CoffeeCard } from './components'
 
-const { DivWrapper, DivHeaderWrapper, DivHeader, DivList, DivText, DivIcons } =
-  styles
+const {
+  DivWrapper,
+  DivHeaderWrapper,
+  DivHeader,
+  DivList,
+  DivText,
+  DivIcons,
+  DivIcon,
+} = styles
 
 export const CoffeeMarketPage = () => (
   <DivWrapper>
@@ -16,16 +26,44 @@ export const CoffeeMarketPage = () => (
           </span>
         </DivText>
         <DivIcons>
-          <span>Compra simples e segura</span>
-          <span>Embalagem mantém o café intacto</span>
-          <span>Entrega rápida e rastreada</span>
-          <span>O café chega fresquinho até você</span>
+          <DivIcon>
+            <span className={'cart'}>
+              <ShoppingCart size={24} color={'#fff'} weight="fill" />
+            </span>
+            <p>Compra simples e segura</p>
+          </DivIcon>
+          <DivIcon>
+            <span className={'package'}>
+              <Package size={24} color={'#fff'} weight="fill" />
+            </span>
+            <p>Embalagem mantém o café intacto</p>
+          </DivIcon>
+          <DivIcon>
+            <span className={'timer'}>
+              <Timer size={24} color={'#fff'} weight="fill" />
+            </span>
+            <p>Entrega rápida e rastreada</p>
+          </DivIcon>
+          <DivIcon>
+            <span className={'coffee'}>
+              <Coffee size={24} color={'#fff'} weight="fill" />
+            </span>
+            <p>O café chega fresquinho até você</p>
+          </DivIcon>
         </DivIcons>
       </DivHeader>
       <img src={CoffeeHeader} alt="" />
     </DivHeaderWrapper>
+    <h2>Nossos cafés</h2>
     <DivList>
-      <h1>Coffee Market</h1>
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
+      <CoffeeCard />
     </DivList>
   </DivWrapper>
 )
