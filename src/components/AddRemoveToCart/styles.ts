@@ -9,6 +9,7 @@ export default {
     gap: 4px;
     padding: 8.5px 8px;
     background-color: ${(props) => props.theme['base-button']};
+    border-radius: 6px;
   `,
 
   SpanItemCounter: styled.span`

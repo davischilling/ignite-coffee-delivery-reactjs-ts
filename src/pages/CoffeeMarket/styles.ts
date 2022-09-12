@@ -69,15 +69,15 @@ export default {
     justify-content: left;
     align-items: center;
 
-    span {
+    /* span {
       display: flex;
       align-items: center;
       justify-content: left;
       padding: 10px;
       border-radius: 9999px;
-    }
+    } */
 
-    .cart {
+    /* .cart {
       background-color: ${(props) => props.theme['yellow-dark']};
     }
 
@@ -91,7 +91,7 @@ export default {
 
     .coffee {
       background-color: ${(props) => props.theme.purple};
-    }
+    } */
   `,
 
   DivList: styled.div`

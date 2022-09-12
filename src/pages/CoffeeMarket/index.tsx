@@ -3,6 +3,7 @@ import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import styles from './styles'
 import CoffeeHeader from '../../assets/coffee-header.svg'
 import { CoffeeCard } from './components'
+import { IconComponent } from '../../components'
 
 const {
   DivWrapper,
@@ -27,27 +28,35 @@ export const CoffeeMarketPage = () => (
         </DivText>
         <DivIcons>
           <DivIcon>
-            <span className={'cart'}>
-              <ShoppingCart size={24} color={'#fff'} weight="fill" />
-            </span>
+            <IconComponent
+              size={32}
+              type="cart"
+              icon={<ShoppingCart size={24} color={'#fff'} weight="fill" />}
+            />
             <p>Compra simples e segura</p>
           </DivIcon>
           <DivIcon>
-            <span className={'package'}>
-              <Package size={24} color={'#fff'} weight="fill" />
-            </span>
+            <IconComponent
+              size={32}
+              type="package"
+              icon={<Package size={24} color={'#fff'} weight="fill" />}
+            />
             <p>Embalagem mantém o café intacto</p>
           </DivIcon>
           <DivIcon>
-            <span className={'timer'}>
-              <Timer size={24} color={'#fff'} weight="fill" />
-            </span>
+            <IconComponent
+              size={32}
+              type="timer"
+              icon={<Timer size={24} color={'#fff'} weight="fill" />}
+            />
             <p>Entrega rápida e rastreada</p>
           </DivIcon>
           <DivIcon>
-            <span className={'coffee'}>
-              <Coffee size={24} color={'#fff'} weight="fill" />
-            </span>
+            <IconComponent
+              size={32}
+              type="coffee"
+              icon={<Coffee size={24} color={'#fff'} weight="fill" />}
+            />
             <p>O café chega fresquinho até você</p>
           </DivIcon>
         </DivIcons>

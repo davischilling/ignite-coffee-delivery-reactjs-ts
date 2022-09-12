@@ -1,2 +1,5 @@
 export * from './Header'
 export * from './AddRemoveToCart'
+export * from './Input'
+export * from './Button'
+export * from './Icon'
