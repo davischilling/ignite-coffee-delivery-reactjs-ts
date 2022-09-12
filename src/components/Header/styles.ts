@@ -31,6 +31,20 @@ export default {
         outline: 0;
       }
 
+      p {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 130%;
+        color: ${(props) => props.theme['purple-dark']};
+      }
+
+      a:link,
+      a:visited {
+        color: ${(props) => props.theme['purple-dark']};
+      }
+
       a + a {
         margin-left: 12px;
       }
