@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export default {
   DivCartItemWrapper: styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 33.5px;
@@ -14,13 +15,14 @@ export default {
   `,
 
   DivWrapper: styled.div`
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     width: 368px;
 
     img {
-      width: 4rem;
-      height: 4rem;
+      max-width: 4rem;
+      max-height: 4rem;
       margin-right: 20px;
     }
   `,
@@ -30,18 +32,22 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     gap: 8px;
-    margin-right: 50px;
   `,
 
   DivItemEdit: styled.div`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     gap: 8px;
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      strong {
+        margin-top: 10px;
+      }
+    }
   `,
   BtnRemove: styled.button`
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0px 8px;
@@ -51,6 +57,12 @@ export default {
     background-color: ${(props) => props.theme['base-button']};
     text-transform: uppercase;
     cursor: pointer;
+
+    margin-right: 40px;
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
 
     span {
       font-family: 'Roboto';

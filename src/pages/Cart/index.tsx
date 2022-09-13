@@ -6,7 +6,7 @@ import styles from './styles'
 
 const {
   DivWrapper,
-  DivPayment,
+  DivPaymentWrapper,
   DivOrder,
   DivPaymentInfosWrapper,
   DivPaymentInfos,
@@ -26,7 +26,7 @@ export const CartPage = () => {
   const [btnSelected, setBtnSelected] = useState(BtnTypes.CREDIT)
   return (
     <DivWrapper>
-      <DivPayment>
+      <DivPaymentWrapper>
         <h2>Complete seu pedido</h2>
         <DivPaymentInfosWrapper>
           <DivPaymentInfos>
@@ -39,16 +39,16 @@ export const CartPage = () => {
             </DivText>
           </DivPaymentInfos>
           <DivFormWrapper>
-            <InputComponent text="CEP" size={200} />
-            <InputComponent text="Rua" size={560} />
+            <InputComponent text="CEP" />
+            <InputComponent text="Rua" />
             <span>
-              <InputComponent text="Número" size={200} />
-              <InputComponent text="Complemento" size={348} />
+              <InputComponent text="Número" />
+              <InputComponent text="Complemento" />
             </span>
             <span>
-              <InputComponent text="Bairro" size={200} />
-              <InputComponent text="Cidade" size={276} />
-              <InputComponent text="UF" size={60} />
+              <InputComponent text="Bairro" />
+              <InputComponent text="Cidade" />
+              <InputComponent text="UF" />
             </span>
           </DivFormWrapper>
         </DivPaymentInfosWrapper>
@@ -83,7 +83,7 @@ export const CartPage = () => {
             />
           </DivPaymentTypeSelect>
         </DivPaymentTypeWrapper>
-      </DivPayment>
+      </DivPaymentWrapper>
       <DivOrderWrapper>
         <h2>Cafés selecionados</h2>
         <DivOrder>

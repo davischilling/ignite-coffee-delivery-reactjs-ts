@@ -3,10 +3,15 @@ import styled from 'styled-components'
 export default {
   DivWrapper: styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 2.5rem 10rem;
-    gap: 2rem;
+    flex: content;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 3% 10%;
+
+    @media (max-width: 768px) {
+      padding: 3% 6%;
+    }
 
     h2 {
       font-family: 'Baloo 2';
@@ -17,12 +22,21 @@ export default {
       color: ${(props) => props.theme['base-subtitle']};
     }
   `,
-  DivPayment: styled.div`
+  DivPaymentWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    width: 40rem;
-    gap: 0.75rem;
+    max-width: 100%;
+    flex: 1;
+    gap: 12px;
   `,
+
+  DivOrderWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    gap: 12px;
+  `,
+
   DivPaymentInfosWrapper: styled.div`
     display: flex;
     flex-direction: column;
@@ -34,7 +48,7 @@ export default {
 
   DivPaymentInfos: styled.div`
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
   `,
 
@@ -62,13 +76,16 @@ export default {
   `,
 
   DivFormWrapper: styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 16px;
 
     span {
+      width: 100%;
       display: flex;
-      flex-direction: row;
+      flex-wrap: wrap;
       gap: 12px;
     }
   `,
@@ -83,17 +100,10 @@ export default {
   `,
 
   DivPaymentTypeSelect: styled.div`
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 12px;
-  `,
-
-  DivOrderWrapper: styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
   `,
 
   DivOrder: styled.div`
@@ -113,11 +123,10 @@ export default {
 
   DivItemsInfo: styled.div`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
   `,
   BtnCorfirmOrder: styled.button`
-    flex: 1;
+    /* flex: 1; */
     background-color: ${(props) => props.theme.yellow};
     padding: 12px 0;
     border-radius: 6px;

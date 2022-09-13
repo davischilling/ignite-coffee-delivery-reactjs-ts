@@ -1,7 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
 
 import styles from './styles'
-import ExpressoTradicional from '../../../../assets/expresso-tradicional.svg'
 import { AddRemoveToCart } from '../../../../components'
 
 const {
@@ -14,21 +13,35 @@ const {
   SpanCartBtn,
 } = styles
 
-export const CoffeeCard = () => (
+interface CoffeeCardProps {
+  img: string
+  tags: string[]
+  name: string
+  description: string
+  value: number
+}
+
+export const CoffeeCard = ({
+  img,
+  tags,
+  name,
+  description,
+  value,
+}: CoffeeCardProps) => (
   <DivWrapper>
     <DivInfos>
-      <img src={ExpressoTradicional} alt="" />
+      <img src={img} alt="" />
       <DivTags>
-        <span>tradicional</span>
+        {tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </DivTags>
-      <SpanName>Expresso Tradicional</SpanName>
-      <SpanDescription>
-        O tradicional café feito com água quente e grãos moídos
-      </SpanDescription>
+      <SpanName>{name}</SpanName>
+      <SpanDescription>{description}</SpanDescription>
     </DivInfos>
     <DivPriceCart>
       <span>
-        R$ <strong>9,90</strong>
+        R$ <strong>{String(value)}</strong>
       </span>
       <AddRemoveToCart />
       <SpanCartBtn>

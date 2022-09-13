@@ -7,9 +7,11 @@ interface IsActive {
 export default {
   Button: styled.button<IsActive>`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    white-space: nowrap;
+    max-width: 100%;
+    flex: 1;
     gap: 12px;
     padding: 17.5px 16px;
     border: 0;

@@ -7,7 +7,15 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
+@media (max-with: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
 body {
+  min-height: 100vh;
+  width: 100%;
   background: ${(props) => props.theme.background};
   color: ${(props) => props.theme['base-text']};
   -webkit-font-smoothing: antialiased;

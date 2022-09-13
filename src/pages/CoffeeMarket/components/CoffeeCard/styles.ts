@@ -4,11 +4,9 @@ export default {
   DivWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    flex: 1 0 21%;
     width: 16rem;
+    max-width: 256px;
     height: 19.375rem;
-    top: 0;
-    left: 0;
     background: ${(props) => props.theme['base-card']};
     border-radius: 6px 36px;
     padding: 1.25rem;

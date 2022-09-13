@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export default {
   DivAddRemove: styled.div`
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: 4px;

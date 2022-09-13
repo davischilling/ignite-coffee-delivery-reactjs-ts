@@ -1,19 +1,14 @@
-import styled, { css } from 'styled-components'
-
-interface sizeProps {
-  size: number
-}
+import styled from 'styled-components'
 
 export default {
-  Input: styled.input<sizeProps>`
+  Input: styled.input`
     box-sizing: border-box;
     padding: 12px;
     border: 1px solid ${(props) => props.theme['base-button']};
     border-radius: 4px;
     background-color: ${(props) => props.theme['base-input']};
-    ${({ size }) => css`
-      width: ${size / 16}rem;
-    `};
+    max-width: 100%;
+    flex: 1;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;

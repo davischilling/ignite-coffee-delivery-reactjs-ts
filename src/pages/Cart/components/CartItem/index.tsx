@@ -2,7 +2,7 @@ import { Trash } from 'phosphor-react'
 
 import { AddRemoveToCart } from '../../../../components'
 import styles from './styles'
-import ExpressoTradicional from '../../../../assets/expresso-tradicional.svg'
+import ExpressoTradicional from '../../../../assets/coffees/expresso-tradicional.svg'
 
 const {
   DivCartItemWrapper,
@@ -24,9 +24,9 @@ export const CartItemComponent = () => (
             <Trash size={16} color={'#8047F8'} />
             <span>remover</span>
           </BtnRemove>
+          <strong>R$ 9,90</strong>
         </DivItemEdit>
       </DivItemEditWrapper>
-      <strong>R$ 9,90</strong>
     </DivWrapper>
     <span />
   </DivCartItemWrapper>

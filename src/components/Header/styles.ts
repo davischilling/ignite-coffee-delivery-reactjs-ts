@@ -3,18 +3,22 @@ import styled from 'styled-components'
 export default {
   Header: styled.header`
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 33px 10rem 33px 10rem;
     position: sticky;
     top: 0;
     z-index: 999;
     background-color: ${(props) => props.theme.white};
+    padding: 33px 10% 33px 10%;
+
+    @media (max-width: 768px) {
+      padding: 33px 6% 33px 6%;
+    }
 
     nav {
       display: flex;
-      gap: 0.75rem;
-      width: 12.0625rem;
+      gap: 12px;
 
       a {
         display: flex;
@@ -24,7 +28,7 @@ export default {
         border-radius: 4px;
         border: 0;
         padding: 10px 8px;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         text-decoration: none;
         border-top: 3px solid transparent;
         border-bottom: 3px solid transparent;
@@ -43,10 +47,6 @@ export default {
       a:link,
       a:visited {
         color: ${(props) => props.theme['purple-dark']};
-      }
-
-      a + a {
-        margin-left: 12px;
       }
 
       .coffee-market {
