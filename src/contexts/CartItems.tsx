@@ -11,13 +11,19 @@ import {
   CartCoffeeItemsState,
   CoffeeItem,
 } from './reducers'
-import { addCoffeeItemToCart, removeCoffeeItemToCart } from './reducers/actions'
+import {
+  addCoffeeItemToCart,
+  popCoffeeItemToCart,
+  removeCoffeeItemToCart,
+} from './reducers/actions'
 
 interface CoffeeMarketContextType {
   coffeeItems: CoffeeItem[]
   cartCoffeeItems: CartCoffeeItemsState
   handleAddCoffeeItemToCart: (coffeeItem: CoffeeItem) => void
   handleRemoveCoffeeItemToCart: (coffeeItem: CoffeeItem) => void
+  handlePopCoffeeItemToCart: (coffeeItem: CoffeeItem) => void
+  amountOfItensInCart: number
 }
 
 interface CoffeeMarketContextProviderProps {
@@ -31,28 +37,33 @@ export const CoffeeMarketProvider = ({
 }: CoffeeMarketContextProviderProps) => {
   const coffeeItemsState = coffeeItems
 
+  const [amountOfItensInCart, setAmountOfItensInCart] = useState(0)
   const [cartCoffeeItemsState, dispatch] = useReducer(
     cartCoffeeItemsReducer,
     { cartCoffeeItemsState: [] },
-    () => {
-      const storedStateAsJSON: string | null = localStorage.getItem(
-        '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
-      )
+    // () => {
+    //   const storedStateAsJSON: string | null = localStorage.getItem(
+    //     '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
+    //   )
 
-      if (storedStateAsJSON && storedStateAsJSON !== 'undefined') {
-        return JSON.parse(storedStateAsJSON)
-      }
-    },
+    //   if (storedStateAsJSON && storedStateAsJSON !== 'undefined') {
+    //     return JSON.parse(storedStateAsJSON)
+    //   }
+    // },
   )
 
   useEffect(() => {
-    const stateJSON = JSON.stringify(cartCoffeeItemsState)
-
-    localStorage.setItem(
-      '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
-      stateJSON,
-    )
+    setAmountOfItensInCart(cartCoffeeItemsState.cartCoffeeItemsState.length)
   }, [cartCoffeeItemsState])
+
+  // useEffect(() => {
+  //   const stateJSON = JSON.stringify(cartCoffeeItemsState)
+
+  //   localStorage.setItem(
+  //     '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
+  //     stateJSON,
+  //   )
+  // }, [cartCoffeeItemsState])
 
   const handleAddCoffeeItemToCart = (coffeeItem: CoffeeItem) => {
     dispatch(addCoffeeItemToCart(coffeeItem))
@@ -62,6 +73,10 @@ export const CoffeeMarketProvider = ({
     dispatch(removeCoffeeItemToCart(coffeeItem))
   }
 
+  const handlePopCoffeeItemToCart = (coffeeItem: CoffeeItem) => {
+    dispatch(popCoffeeItemToCart(coffeeItem))
+  }
+
   return (
     <CoffeeMarketContext.Provider
       value={{
@@ -69,6 +84,8 @@ export const CoffeeMarketProvider = ({
         cartCoffeeItems: cartCoffeeItemsState,
         handleAddCoffeeItemToCart,
         handleRemoveCoffeeItemToCart,
+        handlePopCoffeeItemToCart,
+        amountOfItensInCart,
       }}
     >
       {children}

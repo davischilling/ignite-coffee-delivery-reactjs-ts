@@ -21,6 +21,7 @@ export default {
       gap: 12px;
 
       a {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -28,11 +29,32 @@ export default {
         border-radius: 4px;
         border: 0;
         padding: 10px 8px;
-        /* white-space: nowrap; */
+        white-space: nowrap;
         text-decoration: none;
         border-top: 3px solid transparent;
         border-bottom: 3px solid transparent;
         outline: 0;
+
+        span {
+          position: absolute;
+          background-color: ${(props) => props.theme['yellow-dark']};
+          width: 20px;
+          height: 20px;
+          right: -8.35px;
+          top: -8px;
+          border-radius: 1000px;
+
+          padding: 2px 0;
+          font-family: 'Roboto';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 0.75rem;
+          line-height: 130%;
+          text-align: center;
+          letter-spacing: -0.06em;
+
+          color: ${(props) => props.theme.white};
+        }
       }
 
       p {

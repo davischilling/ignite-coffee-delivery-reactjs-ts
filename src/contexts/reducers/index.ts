@@ -56,6 +56,15 @@ export const cartCoffeeItemsReducer = (
         })
       }
     }
+    case ActionTypes.POP_COFFEE_ITEM_TO_CART: {
+      if (coffeeItemIdex < 0) {
+        return state
+      } else {
+        return produce(state, (draft) => {
+          draft.cartCoffeeItemsState.splice(coffeeItemIdex, 1)
+        })
+      }
+    }
     default:
       return state
   }

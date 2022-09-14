@@ -7,11 +7,6 @@ export default {
     flex-direction: column;
     gap: 33.5px;
     margin-bottom: 24px;
-
-    span {
-      flex: 1;
-      border: 1px solid ${(props) => props.theme['base-button']};
-    }
   `,
 
   DivWrapper: styled.div`
@@ -72,5 +67,10 @@ export default {
       line-height: 160%;
       color: ${(props) => props.theme['base-text']};
     }
+  `,
+
+  SpanLineDivider: styled.span`
+    flex: 1;
+    border: 1px solid ${(props) => props.theme['base-button']};
   `,
 }

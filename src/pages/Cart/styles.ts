@@ -33,6 +33,7 @@ export default {
   DivOrderWrapper: styled.div`
     display: flex;
     flex-direction: column;
+    min-width: 35%;
     max-width: 100%;
     gap: 12px;
   `,

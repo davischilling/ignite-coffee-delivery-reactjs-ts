@@ -1,7 +1,8 @@
 import { ShoppingCart } from 'phosphor-react'
 
-import styles from './styles'
 import { AddRemoveToCart } from '../../../../components'
+import { CoffeeItem } from '../../../../contexts/reducers'
+import styles from './styles'
 
 const {
   DivWrapper,
@@ -14,39 +15,31 @@ const {
 } = styles
 
 interface CoffeeCardProps {
-  img: string
-  tags: string[]
-  name: string
-  description: string
-  value: number
+  item: CoffeeItem
 }
 
-export const CoffeeCard = ({
-  img,
-  tags,
-  name,
-  description,
-  value,
-}: CoffeeCardProps) => (
-  <DivWrapper>
-    <DivInfos>
-      <img src={img} alt="" />
-      <DivTags>
-        {tags.map((tag) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </DivTags>
-      <SpanName>{name}</SpanName>
-      <SpanDescription>{description}</SpanDescription>
-    </DivInfos>
-    <DivPriceCart>
-      <span>
-        R$ <strong>{String(value)}</strong>
-      </span>
-      <AddRemoveToCart />
-      <SpanCartBtn>
-        <ShoppingCart size={22} color={'#fff'} weight="fill" />
-      </SpanCartBtn>
-    </DivPriceCart>
-  </DivWrapper>
-)
+export const CoffeeCard = ({ item }: CoffeeCardProps) => {
+  return (
+    <DivWrapper>
+      <DivInfos>
+        <img src={item.img} alt="" />
+        <DivTags>
+          {item.tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </DivTags>
+        <SpanName>{item.name}</SpanName>
+        <SpanDescription>{item.description}</SpanDescription>
+      </DivInfos>
+      <DivPriceCart>
+        <span>
+          R$ <strong>{String(item.value.toFixed(2))}</strong>
+        </span>
+        <AddRemoveToCart item={item} />
+        <SpanCartBtn>
+          <ShoppingCart size={22} color={'#fff'} weight="fill" />
+        </SpanCartBtn>
+      </DivPriceCart>
+    </DivWrapper>
+  )
+}

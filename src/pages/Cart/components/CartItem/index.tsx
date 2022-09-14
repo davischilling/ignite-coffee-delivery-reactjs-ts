@@ -1,8 +1,10 @@
 import { Trash } from 'phosphor-react'
+import { useContext } from 'react'
 
 import { AddRemoveToCart } from '../../../../components'
+import { CoffeeMarketContext } from '../../../../contexts/CartItems'
+import { CartCoffeeItem } from '../../../../contexts/reducers'
 import styles from './styles'
-import ExpressoTradicional from '../../../../assets/coffees/expresso-tradicional.svg'
 
 const {
   DivCartItemWrapper,
@@ -10,24 +12,37 @@ const {
   DivItemEditWrapper,
   DivItemEdit,
   BtnRemove,
+  SpanLineDivider,
 } = styles
 
-export const CartItemComponent = () => (
-  <DivCartItemWrapper>
-    <DivWrapper>
-      <img src={ExpressoTradicional} alt="" />
-      <DivItemEditWrapper>
-        <span>Expresso Tradicional</span>
-        <DivItemEdit>
-          <AddRemoveToCart />
-          <BtnRemove>
-            <Trash size={16} color={'#8047F8'} />
-            <span>remover</span>
-          </BtnRemove>
-          <strong>R$ 9,90</strong>
-        </DivItemEdit>
-      </DivItemEditWrapper>
-    </DivWrapper>
-    <span />
-  </DivCartItemWrapper>
-)
+interface CartItemComponentProps {
+  item: CartCoffeeItem
+}
+
+export const CartItemComponent = ({ item }: CartItemComponentProps) => {
+  const { handlePopCoffeeItemToCart } = useContext(CoffeeMarketContext)
+
+  const onClickPopCoffeeItem = () => {
+    handlePopCoffeeItemToCart(item.cartCoffeeItem)
+  }
+
+  return (
+    <DivCartItemWrapper>
+      <DivWrapper>
+        <img src={item.cartCoffeeItem.img} alt="" />
+        <DivItemEditWrapper>
+          <span>{item.cartCoffeeItem.name}</span>
+          <DivItemEdit>
+            <AddRemoveToCart item={item.cartCoffeeItem} />
+            <BtnRemove>
+              <Trash size={16} color={'#8047F8'} />
+              <span onClick={onClickPopCoffeeItem}>remover</span>
+            </BtnRemove>
+            <strong>R$ {String(item.cartCoffeeItem.value.toFixed(2))}</strong>
+          </DivItemEdit>
+        </DivItemEditWrapper>
+      </DivWrapper>
+      <SpanLineDivider />
+    </DivCartItemWrapper>
+  )
+}

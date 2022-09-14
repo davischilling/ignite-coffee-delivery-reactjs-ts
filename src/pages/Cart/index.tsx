@@ -1,6 +1,7 @@
 import { MapPin, CurrencyDollar, CreditCard } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BtnTypes, ButtonComponent, InputComponent } from '../../components'
+import { CoffeeMarketContext } from '../../contexts/CartItems'
 import { CartItemComponent } from './components/CartItem'
 import styles from './styles'
 
@@ -22,8 +23,36 @@ const {
   BtnCorfirmOrder,
 } = styles
 
+interface OrderInfosState {
+  delivery: number
+  totalValue: number
+}
+
 export const CartPage = () => {
   const [btnSelected, setBtnSelected] = useState(BtnTypes.CREDIT)
+
+  const {
+    cartCoffeeItems: { cartCoffeeItemsState },
+    amountOfItensInCart,
+  } = useContext(CoffeeMarketContext)
+
+  const [orderInfos, setOrderInfos] = useState<OrderInfosState>({
+    delivery: 3.5,
+    totalValue: 0,
+  })
+
+  useEffect(() => {
+    const total = cartCoffeeItemsState.reduce((previous, current) => {
+      return previous + current.cartCoffeeItem.value
+    }, 0)
+    setOrderInfos((state) => {
+      return {
+        ...state,
+        totalValue: total + state.delivery,
+      }
+    })
+  }, [cartCoffeeItemsState])
+
   return (
     <DivWrapper>
       <DivPaymentWrapper>
@@ -87,20 +116,32 @@ export const CartPage = () => {
       <DivOrderWrapper>
         <h2>Cafés selecionados</h2>
         <DivOrder>
-          <CartItemComponent />
-          <CartItemComponent />
+          {cartCoffeeItemsState &&
+            cartCoffeeItemsState.map((el) => (
+              <CartItemComponent key={el.cartCoffeeItem.id} item={el} />
+            ))}
           <DivConfirmOrderWrapper>
-            <DivItemsInfo>
+            {/* <DivItemsInfo>
               <span>Total de itens</span>
               <span>R$ 29,70</span>
-            </DivItemsInfo>
+            </DivItemsInfo> */}
             <DivItemsInfo>
               <span>Entrega</span>
-              <span>R$ 3,50</span>
+              <span>
+                R${' '}
+                {amountOfItensInCart
+                  ? String(orderInfos.delivery.toFixed(2))
+                  : '0.00'}
+              </span>
             </DivItemsInfo>
             <DivItemsInfo>
               <span>Valor Total</span>
-              <span>R$ 33,20</span>
+              <span>
+                R${' '}
+                {amountOfItensInCart
+                  ? String(orderInfos.totalValue.toFixed(2))
+                  : '0.00'}
+              </span>
             </DivItemsInfo>
           </DivConfirmOrderWrapper>
           <BtnCorfirmOrder>Confirmar pedido</BtnCorfirmOrder>

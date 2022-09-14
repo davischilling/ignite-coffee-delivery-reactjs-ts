@@ -19,6 +19,7 @@ const {
 
 export const CoffeeMarketPage = () => {
   const { coffeeItems } = useContext(CoffeeMarketContext)
+
   return (
     // <div></div>
     <DivWrapper>
@@ -70,16 +71,10 @@ export const CoffeeMarketPage = () => {
       </DivHeaderWrapper>
       <h2>Nossos cafés</h2>
       <DivList>
-        {coffeeItems.map((coffee) => (
-          <CoffeeCard
-            key={coffee.id}
-            img={coffee.img}
-            tags={coffee.tags}
-            name={coffee.name}
-            description={coffee.description}
-            value={coffee.value}
-          />
-        ))}
+        {coffeeItems &&
+          coffeeItems.map((coffee) => (
+            <CoffeeCard key={coffee.id} item={coffee} />
+          ))}
       </DivList>
     </DivWrapper>
   )
