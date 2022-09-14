@@ -43,7 +43,7 @@ export const CartPage = () => {
 
   useEffect(() => {
     const total = cartCoffeeItemsState.reduce((previous, current) => {
-      return previous + current.cartCoffeeItem.value
+      return previous + current.cartCoffeeItem.value * current.itemAmount
     }, 0)
     setOrderInfos((state) => {
       return {
