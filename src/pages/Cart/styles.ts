@@ -113,6 +113,26 @@ export default {
     padding: 40px;
     background-color: ${(props) => props.theme['base-card']};
     border-radius: 6px 44px;
+
+    .btn-confirm-order {
+      background-color: ${(props) => props.theme.yellow};
+      text-align: center;
+      text-decoration: none;
+      padding: 12px 0;
+      border-radius: 6px;
+      color: ${(props) => props.theme.white};
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.875rem;
+      line-height: 160%;
+      border: 0;
+      cursor: pointer;
+
+      :hover {
+        background-color: ${(props) => props.theme['yellow-dark']};
+      }
+    }
   `,
 
   DivConfirmOrderWrapper: styled.div`

@@ -35,35 +35,40 @@ export const CoffeeMarketContext = createContext({} as CoffeeMarketContextType)
 export const CoffeeMarketProvider = ({
   children,
 }: CoffeeMarketContextProviderProps) => {
-  const coffeeItemsState = coffeeItems
+  // const coffeeItemsState = coffeeItems
+  // const [coffeeItemsState, setCoffeeItemsState] = useState<CoffeeItem[]>([])
+
+  // useEffect(() => {
+  //   setCoffeeItemsState(coffeeItems)
+  // }, [])
 
   const [amountOfItensInCart, setAmountOfItensInCart] = useState(0)
   const [cartCoffeeItemsState, dispatch] = useReducer(
     cartCoffeeItemsReducer,
     { cartCoffeeItemsState: [] },
-    // () => {
-    //   const storedStateAsJSON: string | null = localStorage.getItem(
-    //     '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
-    //   )
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
+      )
 
-    //   if (storedStateAsJSON && storedStateAsJSON !== 'undefined') {
-    //     return JSON.parse(storedStateAsJSON)
-    //   }
-    // },
+      if (storedStateAsJSON && storedStateAsJSON !== 'undefined') {
+        return JSON.parse(storedStateAsJSON)
+      }
+    },
   )
 
   useEffect(() => {
     setAmountOfItensInCart(cartCoffeeItemsState.cartCoffeeItemsState.length)
   }, [cartCoffeeItemsState])
 
-  // useEffect(() => {
-  //   const stateJSON = JSON.stringify(cartCoffeeItemsState)
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartCoffeeItemsState)
 
-  //   localStorage.setItem(
-  //     '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
-  //     stateJSON,
-  //   )
-  // }, [cartCoffeeItemsState])
+    localStorage.setItem(
+      '@ignite-coffee-delivery-1.0.0:cart-coffee-items',
+      stateJSON,
+    )
+  }, [cartCoffeeItemsState])
 
   const handleAddCoffeeItemToCart = (coffeeItem: CoffeeItem) => {
     dispatch(addCoffeeItemToCart(coffeeItem))
@@ -80,7 +85,7 @@ export const CoffeeMarketProvider = ({
   return (
     <CoffeeMarketContext.Provider
       value={{
-        coffeeItems: coffeeItemsState,
+        coffeeItems,
         cartCoffeeItems: cartCoffeeItemsState,
         handleAddCoffeeItemToCart,
         handleRemoveCoffeeItemToCart,

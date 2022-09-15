@@ -1,5 +1,7 @@
 import { MapPin, CurrencyDollar, CreditCard } from 'phosphor-react'
 import { useContext, useEffect, useState } from 'react'
+import { Navigate, NavLink } from 'react-router-dom'
+
 import { BtnTypes, ButtonComponent, InputComponent } from '../../components'
 import { CoffeeMarketContext } from '../../contexts/CartItems'
 import { CartItemComponent } from './components/CartItem'
@@ -48,10 +50,14 @@ export const CartPage = () => {
     setOrderInfos((state) => {
       return {
         ...state,
-        totalValue: total + state.delivery,
+        totalValue: total,
       }
     })
   }, [cartCoffeeItemsState])
+
+  const handlePaymentBtnClick = (btnType: BtnTypes) => {
+    setBtnSelected(btnType)
+  }
 
   return (
     <DivWrapper>
@@ -93,18 +99,21 @@ export const CartPage = () => {
           </DivPaymentInfos>
           <DivPaymentTypeSelect>
             <ButtonComponent
+              handleClick={() => handlePaymentBtnClick(BtnTypes.CREDIT)}
               icon={<CreditCard size={16} />}
               text={'cartão de crédito'}
               selected={btnSelected}
               type={BtnTypes.CREDIT}
             />
             <ButtonComponent
+              handleClick={() => handlePaymentBtnClick(BtnTypes.DEBIT)}
               icon={<CreditCard size={16} />}
               text={'cartão de débito'}
               selected={btnSelected}
               type={BtnTypes.DEBIT}
             />
             <ButtonComponent
+              handleClick={() => handlePaymentBtnClick(BtnTypes.MONEY)}
               icon={<CreditCard size={16} />}
               text={'dinheiro'}
               selected={btnSelected}
@@ -121,10 +130,15 @@ export const CartPage = () => {
               <CartItemComponent key={el.cartCoffeeItem.id} item={el} />
             ))}
           <DivConfirmOrderWrapper>
-            {/* <DivItemsInfo>
-              <span>Total de itens</span>
-              <span>R$ 29,70</span>
-            </DivItemsInfo> */}
+            <DivItemsInfo>
+              <span>Valor dos produtos</span>
+              <span>
+                R${' '}
+                {amountOfItensInCart
+                  ? String(orderInfos.totalValue.toFixed(2))
+                  : '0.00'}
+              </span>
+            </DivItemsInfo>
             <DivItemsInfo>
               <span>Entrega</span>
               <span>
@@ -139,12 +153,20 @@ export const CartPage = () => {
               <span>
                 R${' '}
                 {amountOfItensInCart
-                  ? String(orderInfos.totalValue.toFixed(2))
+                  ? String(
+                      (orderInfos.totalValue + orderInfos.delivery).toFixed(2),
+                    )
                   : '0.00'}
               </span>
             </DivItemsInfo>
           </DivConfirmOrderWrapper>
-          <BtnCorfirmOrder>Confirmar pedido</BtnCorfirmOrder>
+          <NavLink
+            to="/confirmation"
+            title="confirmation"
+            className={'btn-confirm-order'}
+          >
+            Confirmar pedido
+          </NavLink>
         </DivOrder>
       </DivOrderWrapper>
     </DivWrapper>

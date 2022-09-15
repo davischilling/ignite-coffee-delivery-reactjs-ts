@@ -21,7 +21,6 @@ export const CoffeeMarketPage = () => {
   const { coffeeItems } = useContext(CoffeeMarketContext)
 
   return (
-    // <div></div>
     <DivWrapper>
       <DivHeaderWrapper>
         <DivHeader>

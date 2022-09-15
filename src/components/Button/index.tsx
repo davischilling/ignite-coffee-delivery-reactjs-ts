@@ -14,6 +14,7 @@ interface ButtonProps {
   text: string
   selected: BtnTypes
   type: BtnTypes
+  handleClick: () => void
 }
 
 export const ButtonComponent = ({
@@ -21,9 +22,10 @@ export const ButtonComponent = ({
   icon,
   selected,
   type,
+  handleClick,
 }: ButtonProps) => {
   return (
-    <Button isActive={selected === type}>
+    <Button isActive={selected === type} onClick={handleClick}>
       {icon}
       {text}
     </Button>
